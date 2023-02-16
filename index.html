@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Math Quiz Game</title>
+    <link rel="icon" type="image/png" href="path/to/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div id="game">
+        <div id="question-container">
+          <h2 id="question"></h2>
+          <input type="text" id="answer" autofocus>
+          <button id="submit-button" onclick="checkAnswer()">Submit</button>
+        </div>
+        <div id="feedback-container">
+          <h2 id="feedback"></h2>
+        </div>
+        <div id="score-container">
+          <h2>Score: <span id="score">0</span></h2>
+        </div>
+      </div>
+      <div id="story">
+        <img id="ufo" src="ufo.png">
+        <img id="cow" src="cow.png">
+        <p id="story-text">The aliens need your help to save their cow friend! Answer math questions correctly to help them activate their beam and carry the cow to safety.</p>
+      </div>
+    </div>
+    <script src="/js/script.js"></script>
+  </body>
+</html>

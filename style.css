@@ -1,0 +1,64 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  #game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    margin-right: 50px;
+  }
+  
+  #question-container {
+    margin-bottom: 20px;
+  }
+  
+  #feedback-container {
+    display: none;
+  }
+  
+  #score-container {
+    margin-top: 20px;
+  }
+  
+  #score {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  #story {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+  }
+  
+  #ufo {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+  }
+  
+  #cow {
+    width: 200px;
+    height: 200px;
+  }
+  
+  #story-text {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
