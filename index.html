@@ -5,9 +5,21 @@
     <title>Math Quiz Game</title>
     <link rel="icon" type="image/png" href="path/to/favicon.png">
 
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/main.css/style.css">
   </head>
   <body>
+
+    <nav>
+      <div class="nav-container">
+        <a href="/" class="logo">Math Quiz Game</a>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li> <br>
+          <li><a href="/menu">Menu</a></li> <br>
+          <li><a href="/help">Help</a></li> <br>
+        </ul>
+      </div>
+    </nav>    
+
     <div class="container">
       <div id="game">
         <div id="question-container">
@@ -23,11 +35,34 @@
         </div>
       </div>
       <div id="story">
-        <img id="ufo" src="ufo.png">
-        <img id="cow" src="cow.png">
-        <p id="story-text">The aliens need your help to save their cow friend! Answer math questions correctly to help them activate their beam and carry the cow to safety.</p>
+        <img id="ufo" src="/images/ufo.jpg">
+        <img id="cow" src="/images/cow.jpg">
+      <p id="story-text"></p>
       </div>
     </div>
-    <script src="/js/script.js"></script>
+    <script src="/main.js/script.js"></script>
+    <script>
+
+      const navSlide = () => {
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-links');
+        const navLinks = document.querySelectorAll('.nav-links li');
+
+        burger.addEventListener('click', () => {
+          nav.classList.toggle('nav-active');
+          burger.classList.toggle('toggle');
+
+          navLinks.forEach((link, index) => {
+            if (link.style.animation) {
+              link.style.animation = '';
+            } else {
+              link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
+            }
+          });
+        });
+      };
+
+      navSlide();
+    </script>
   </body>
 </html>
