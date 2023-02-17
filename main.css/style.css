@@ -324,6 +324,30 @@ z-index: 0;
 color: red;
 }
 
+.beam {
+  animation: beam 1s infinite;
+  background-image: url('beam.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@keyframes beam {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+
+
 #ufo {
 width: 200px;
 height: 200px;
