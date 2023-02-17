@@ -1,10 +1,35 @@
 // Set up the game
 const questions = [
-    { question: '3 + 4', answer: '7' },
-    { question: '5 + 2', answer: '7' },
-    { question: '8 + 9', answer: '17' },
-    { question: '6 + 1', answer: '7' },
-    { question: '2 + 2', answer: '4' }
+    { question: '5 + 7', answer: '12' },
+    { question: '12 - 5', answer: '7' },
+    { question: '3 * 4', answer: '12' },
+    { question: '10 / 2', answer: '5' },
+    { question: '16 / 4', answer: '4' },
+    { question: '9 - 3', answer: '6' },
+    { question: '7 * 8', answer: '56' },
+    { question: '20 / 4', answer: '5' },
+    { question: '2 + 2 * 2', answer: '6' },
+    { question: '10 - 4 * 2', answer: '2' },
+    { question: '4 * 4 * 4', answer: '64' },
+    { question: '16 / 2 / 2', answer: '4' },
+    { question: '1/2 + 1/4', answer: '3/4' },
+    { question: '1/3 + 1/6', answer: '1/2' },
+    { question: '2/3 - 1/6', answer: '1/2' },
+    { question: '3/4 + 1/4', answer: '1' },
+    { question: '3/5 * 2', answer: '6/5' },
+    { question: '5/8 * 3/4', answer: '15/32' },
+    { question: '0.5 + 0.25', answer: '0.75' },
+    { question: '0.75 - 0.25', answer: '0.5' },
+    { question: '0.1 + 0.2', answer: '0.3' },
+    { question: '0.4 * 0.2', answer: '0.08' },
+    { question: '5 squared', answer: '25' },
+    { question: '10 cubed', answer: '1000' },
+    { question: 'Area of a rectangle with length 5 and width 3', answer: '15' },
+    { question: 'Perimeter of a square with side length 4', answer: '16' },
+    { question: 'Rounding 3.567 to the nearest tenth', answer: '3.6' },
+    { question: 'Rounding 8.276 to the nearest hundredth', answer: '8.28' }
+  
+  
   ];
   
   let currentQuestionIndex = 0;
