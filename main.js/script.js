@@ -70,8 +70,9 @@ function checkAnswer() {
   const answerElement = document.getElementById('answer');
   const feedbackElement = document.getElementById('feedback');
   const scoreElement = document.getElementById('score');
-  const successAudio = new Audio('success.mp3');
-  const failAudio = new Audio('fail.mp3');
+  const successAudio = new Audio('audio/success.mp3');
+  const tryagainAudio = new Audio('audio/try-again3.mp3');
+  const failAudio = new Audio('audio/fail.mp3');
 
   const userAnswer = answerElement.value.trim();
 
@@ -91,6 +92,7 @@ function checkAnswer() {
     } else {
       feedbackElement.textContent = 'Incorrect. Try again!';
       feedbackElement.classList.remove('success');
+      tryagainAudio.play();
       return; // exit the function early and don't update the currentQuestionIndex
     }
   }
