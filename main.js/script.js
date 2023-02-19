@@ -35,6 +35,8 @@ const questions = [
 
 let currentQuestionIndex = 0;
 let score = 0;
+let lives = 3;
+let cowCount = 0;
 
 // Display the current question
 function displayQuestion() {
@@ -70,6 +72,8 @@ function checkAnswer() {
   const answerElement = document.getElementById('answer');
   const feedbackElement = document.getElementById('feedback');
   const scoreElement = document.getElementById('score');
+  const cowCountElement = document.getElementById('cow-count');
+  const livesElement = document.getElementById('lives');
   const successAudio = new Audio('audio/success.mp3');
   const tryagainAudio = new Audio('audio/try-again3.mp3');
   const failAudio = new Audio('audio/fail.mp3');
@@ -81,6 +85,7 @@ function checkAnswer() {
     feedbackElement.classList.add('success');
     successAudio.play();
     score++;
+    cowCount++;
     numTries = 0; // reset number of tries if answer is correct
   } else {
     numTries++;
@@ -89,6 +94,13 @@ function checkAnswer() {
       feedbackElement.classList.remove('success');
       failAudio.play();
       numTries = 0; // reset number of tries
+      lives--;
+      
+      if (lives <= -1) { // check if lives is less than or equal to 1
+        endGame(); // call endGame function to end the game
+        return; // exit the function
+      }
+    
     } else {
       feedbackElement.textContent = 'Incorrect. Try again!';
       feedbackElement.classList.remove('success');
@@ -101,6 +113,8 @@ function checkAnswer() {
   answerElement.value = '';
   feedbackElement.style.display = 'block';
   scoreElement.textContent = score;
+  cowCountElement.textContent = cowCount;
+  livesElement.textContent = lives;
 
   // Go to the next question or end the game
   currentQuestionIndex++;
@@ -112,13 +126,7 @@ function checkAnswer() {
 }
 
 
-  // Go to the next question or end the game
-  currentQuestionIndex++;
-  if (currentQuestionIndex === questions.length) {
-    endGame();
-  } else {
-    displayQuestion();
-  }
+  
 
 
 function endGame() {

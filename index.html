@@ -20,7 +20,14 @@
       </div>
     </nav>    
 
+    <div id="game-info">
+      <p>Cow Count: <span id="cow-count">0</span></p>
+      <p>Lives: <span id="lives">❤️ ❤️ ❤️<i class="fas fa-heart"></i><i class="fas fa-heart"></i><i class="fas fa-heart"></i></span></p>
+    </div>
+
     <div class="container">
+
+
       <div id="game">
         <div id="question-container">
           <h2 id="question"></h2>
@@ -71,6 +78,35 @@
       };
 
       navSlide();
+
+      // Get the cow count and lives elements
+  var cowCountElement = document.getElementById('cow-count');
+  var livesElement = document.getElementById('lives');
+
+  // Set the initial cow count and lives values
+  var cowCount = 0;
+  var lives = 3;
+
+  // Update the cow count and lives information
+  function updateGameInfo() {
+    cowCountElement.textContent = cowCount;
+    livesElement.innerHTML = '';
+    for (var i = 0; i < lives; i++) {
+      livesElement.innerHTML += '<i class="fas fa-heart"></i>';
+    }
+  }
+
+  // Call the updateGameInfo function to display the initial values
+  updateGameInfo();
+
+  // Update the cow count when a cow is saved
+  cowCount++;
+  updateGameInfo();
+
+  // Reduce a life when a wrong answer is submitted
+  lives--;
+  updateGameInfo();
+  
     </script>
   </body>
 </html>
