@@ -39,15 +39,39 @@ let score = 0;
 // Display the current question
 function displayQuestion() {
   const questionElement = document.getElementById('question');
-  questionElement.textContent = questions[currentQuestionIndex].question;
+  const choicesElement = document.getElementById('choices');
+  const nextButton = document.getElementById('next-button');
+  const tryAgainButton = document.getElementById('try-again-button');
+
+  // Enable the Next Question button if the user has tried three times or less
+  if (numTries < 3) {
+    nextButton.disabled = true;
+  } else {
+    nextButton.disabled = false;
+    
+  }
+
+  // Display the current question and choices
+  const currentQuestion = questions[currentQuestionIndex];
+  questionElement.textContent = currentQuestion.question;
+  choicesElement.innerHTML = '';
+  currentQuestion.choices.forEach(choice => {
+    const choiceElement = document.createElement('button');
+    choiceElement.textContent = choice;
+    choiceElement.onclick = checkAnswer;
+    choicesElement.appendChild(choiceElement);
+  });
 }
 
-// Check the user's answer
+
+let numTries = 0; // variable to keep track of number of tries
+
 function checkAnswer() {
   const answerElement = document.getElementById('answer');
   const feedbackElement = document.getElementById('feedback');
   const scoreElement = document.getElementById('score');
   const successAudio = new Audio('success.mp3');
+  const failAudio = new Audio('fail.mp3');
 
   const userAnswer = answerElement.value.trim();
 
@@ -56,9 +80,19 @@ function checkAnswer() {
     feedbackElement.classList.add('success');
     successAudio.play();
     score++;
+    numTries = 0; // reset number of tries if answer is correct
   } else {
-    feedbackElement.textContent = 'Incorrect. Try again!';
-    feedbackElement.classList.remove('success');
+    numTries++;
+    if (numTries >= 3) {
+      feedbackElement.textContent = 'Incorrect. You have reached the maximum number of tries for this question.';
+      feedbackElement.classList.remove('success');
+      failAudio.play();
+      numTries = 0; // reset number of tries
+    } else {
+      feedbackElement.textContent = 'Incorrect. Try again!';
+      feedbackElement.classList.remove('success');
+      return; // exit the function early and don't update the currentQuestionIndex
+    }
   }
 
   // Show feedback and update score
@@ -75,7 +109,16 @@ function checkAnswer() {
   }
 }
 
-// End the game and activate the beam
+
+  // Go to the next question or end the game
+  currentQuestionIndex++;
+  if (currentQuestionIndex === questions.length) {
+    endGame();
+  } else {
+    displayQuestion();
+  }
+
+
 function endGame() {
   const storyTextElement = document.getElementById('story-text');
   const feedbackElement = document.getElementById('feedback');
@@ -85,10 +128,31 @@ function endGame() {
   const ufoElement = document.getElementById('ufo');
   const cowElement = document.getElementById('cow');
 
-  // Show end game message and hide feedback and score
-  storyTextElement.textContent = 'Great job! You helped the aliens save their cow friend.';
+  const accuracy = Math.round((score / questions.length) * 100);
+
+  // Check if the user has passed or failed the game
+  if (accuracy >= 70) {
+    storyTextElement.textContent = `Great job! You answered ${score} out of ${questions.length} questions correctly (${accuracy}%). You helped the aliens save their cow friend.`;
+    storyTextElement.classList.add('success');
+  } else {
+    storyTextElement.textContent = `Oh no! You answered only ${score} out of ${questions.length} questions correctly (${accuracy}%). The aliens were unable to save their cow friend.`;
+    storyTextElement.classList.add('fail');
+  }
+
   feedbackElement.style.display = 'none';
   scoreElement.style.display = 'none';
+
+  // Animate victory or defeat sign
+  const resultElement = document.createElement('div');
+  resultElement.classList.add('result');
+  if (accuracy >= 70) {
+    resultElement.textContent = 'Victory!';
+    resultElement.classList.add('success');
+  } else {
+    resultElement.textContent = 'Defeat!';
+    resultElement.classList.add('fail');
+  }
+  storyElement.appendChild(resultElement);
 
   // Activate the beam
   gameElement.style.display = 'none';

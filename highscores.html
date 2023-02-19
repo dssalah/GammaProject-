@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Math Quiz Game - Scoreboard</title>
+  <link rel="stylesheet" type="text/css" href="/main.css/style.css">
+</head>
+<body>
+
+<h2>Your highest score: <span id="highest-score"></span></h2>
+
+<h2>Leaderboard</h2>
+<table id="leaderboard">
+  <tr>
+    <th>Rank</th>
+    <th>Username</th>
+    <th>Score</th>
+  </tr>
+</table>
+
+<script>
+  // Make an AJAX request to fetch the score data
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/scores.json');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      var scores = JSON.parse(xhr.responseText);
+
+      // Update the highest score element
+      var highestScoreElement = document.getElementById('highest-score');
+      highestScoreElement.textContent = scores.highest_score;
+
+      // Update the leaderboard table
+      var leaderboardTable = document.getElementById('leaderboard');
+      scores.leaderboard.forEach(function(score, index) {
+        var row = leaderboardTable.insertRow(index + 1);
+        var rankCell = row.insertCell(0);
+        rankCell.textContent = index + 1;
+        var usernameCell = row.insertCell(1);
+        usernameCell.textContent = score.username;
+        var scoreCell = row.insertCell(2);
+        scoreCell.textContent = score.score;
+      });
+    } else {
+      console.log('Failed to fetch scores: ' + xhr.status);
+    }
+  };
+  xhr.send();
+</script>
+
+</body>
+</html>

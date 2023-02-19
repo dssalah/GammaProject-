@@ -2,55 +2,38 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Math Quiz Game</title>
+    <title>Math Quiz Game - Menu</title>
     <link rel="icon" type="image/png" href="path/to/favicon.png">
-
     <link rel="stylesheet" type="text/css" href="/main.css/style.css">
   </head>
   <body>
-
     <nav>
       <div class="nav-container">
         <a href="/" class="logo">Math Quiz Game</a>
         <ul class="nav-links">
-          <li><a href="/">Home</a></li> <br>
-          <li><a href="/menu.html">Menu</a></li> <br>
-          <li><a href="/help">Help</a></li> <br>
+          <li><a href="/">Home</a></li>
+          <li><a href="/menu.html">Menu</a></li>
+          <li><a href="/help">Help</a></li>
         </ul>
+        <div class="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
       </div>
-    </nav>    
+    </nav>
 
-    <div class="container">
-      <div id="game">
-        <div id="question-container">
-          <h2 id="question"></h2>
-          <input type="text" id="answer" autofocus onkeydown="if (event.keyCode == 13) checkAnswer()">
-          <button id="submit-button" onclick="checkAnswer()">Submit</button>
-        </div>
-        <div id="feedback-container">
-          <p id="feedback"></p>
-          <button id="next-button" onclick="nextQuestion()">Next Question</button>
-        </div>
-        <div id="feedback-container">
-           
-          <h2 id="feedback"></h2>
-        </div>
-        <div id="score-container">
-          <h2>Score: <span id="score">0</span></h2>
-        </div>
-      </div>
-      <div id="story">
-       
-          <img src="/images/ufo.jpg" alt="UFO" id="ufo">
-          <img src="/images/cow.jpg" alt="Cow" id="cow">
-     
-        </div>        
-      <p id="story-text">Gamma Productions Presents...</p>
-      </div>
+    <div class="menu-container">
+      <h1>Menu</h1>
+      <ul class="menu-options">
+        <li><a href="/game">Play Game</a></li>
+        <li><a href="/highscores.html">High Scores</a></li>
+        <li><a href="/settings">Settings</a></li>
+      </ul>
     </div>
+
     <script src="/main.js/script.js"></script>
     <script>
-
       const navSlide = () => {
         const burger = document.querySelector('.burger');
         const nav = document.querySelector('.nav-links');
